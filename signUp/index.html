@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+    // Lấy query string (ví dụ: ?data={...})
+    var queryString = window.location.search;
+    
+    // Sử dụng scheme "https" để khớp với cấu hình trong AndroidManifest
+    var scheme = "https"; 
+    var host = "thuanht-dev.github.io";
+    var path = "/deeplink_assets/signUp";
+    
+    // Tạo link đầy đủ để hệ thống nhận diện đúng Intent Filter
+    window.location.href = scheme + "://" + host + path + queryString;
+</script>
+</head>
+<body>
+    <p>Đang chuyển hướng tới ứng dụng...</p>
+</body>
+</html>
