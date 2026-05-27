@@ -2,24 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
-    <script>
-        var queryString = window.location.search;
-        var fullUrl = "https://thuanht-dev.github.io/deeplink_assets/signUp" + queryString;
-        
-        // Cố gắng mở App
-        window.location.href = fullUrl;
-        
-        // Nếu sau 2 giây vẫn ở lại trang này, hiện nút bấm thủ công
-        setTimeout(function() {
-            document.getElementById("manual-link").style.display = "block";
-        }, 2000);
-    </script>
+    <title>Opening App...</title>
 </head>
 <body>
-    <p>Đang chuyển hướng tới ứng dụng...</p>
-    <div id="manual-link" style="display:none;">
-        <p>Nếu ứng dụng không tự mở, hãy <a href="javascript:window.location.href = fullUrl;">nhấn vào đây để mở thủ công</a>.</p>
-    </div>
+    <script>
+        var queryString = window.location.search; // Lấy ?data=...
+        
+        // Cú pháp Intent URL chuẩn của Android
+        // Thay com.your.package.name bằng package name thực tế của bạn
+        // Ví dụ: com.thuanht.appname
+        var intentUrl = "intent://signUp" + queryString + "#Intent;" +
+                        "scheme=https;" +
+                        "package=com.your.package.name;" + 
+                        "host=thuanht-dev.github.io;" +
+                        "path=/deeplink_assets/signUp;" +
+                        "end;";
+
+        // Tự động chuyển hướng
+        window.location.replace(intentUrl);
+    </script>
+    <p>Đang mở ứng dụng, vui lòng đợi...</p>
 </body>
 </html>
