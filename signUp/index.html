@@ -2,25 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Opening App...</title>
+    <title>Đang chuyển hướng...</title>
 </head>
 <body>
     <script>
         var queryString = window.location.search; // Lấy ?data=...
-        
-        // Cú pháp Intent URL chuẩn của Android
-        // Thay com.your.package.name bằng package name thực tế của bạn
-        // Ví dụ: com.thuanht.appname
-        var intentUrl = "intent://signUp" + queryString + "#Intent;" +
-                        "scheme=https;" +
-                        "package=com.lapolo.medical;" + 
-                        "host=thuanht-dev.github.io;" +
-                        "path=/deeplink_assets/signUp;" +
-                        "end;";
+        var appStoreUrl = "https://play.google.com/store/apps/details?id=com.lapolo.medical&hl=vi"; // Thay bằng link App của bạn
 
-        // Tự động chuyển hướng
-        window.location.replace(intentUrl);
+        // 1. Thử mở App bằng scheme HTTPS (App Links)
+        // Khi người dùng click, hệ thống sẽ tự tìm App có intent-filter khớp
+        var intentUrl = "https://thuanht-dev.github.io/deeplink_assets/signUp" + queryString;
+        window.location.href = intentUrl;
+
+        // 2. Fallback: Nếu App không mở sau 1.5 giây, chuyển sang Store
+        setTimeout(function() {
+            window.location.href = appStoreUrl;
+        }, 1500);
     </script>
-    <p>Đang mở ứng dụng, vui lòng đợi...</p>
+    <p>Đang chuyển hướng tới ứng dụng...</p>
 </body>
 </html>
