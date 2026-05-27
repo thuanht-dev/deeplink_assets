@@ -1,12 +1,13 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.lapolo.medical",
       "sha256_cert_fingerprints": [
-        "CB:70:D3:4C:80:0C:4F:C8:48:23:41:2A:86:67:AE:40:4C:94:CA:45:9E:29:5B:36:43:17:3E:36:E0:37:39:09",
-        "D3:36:06:EF:D1:EA:50:F5:E3:CE:43:A6:C0:A8:BD:9A:61:3B:45:B7:52:BC:82:F3:AB:02:AB:47:55:D3:19:1E"
+        "CB:70:D3:4C:80:0C:4F:C8:48:23:41:2A:86:67:AE:40:4C:94:CA:45:9E:29:5B:36:43:17:3E:36:E0:37:39:09"
       ]
     }
   }
