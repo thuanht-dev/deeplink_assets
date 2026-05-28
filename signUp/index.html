@@ -198,34 +198,13 @@
             "#Intent;" +
             "scheme=https;" +
             "package=" + packageName + ";" +
-            "end;";
+            "S.browser_fallback_url=" +
+            encodeURIComponent(
+                "https://play.google.com/store/apps/details?id=" + packageName
+            ) +
+            ";end;";
 
-        const playStoreUrl =
-            "https://play.google.com/store/apps/details?id=" + packageName;
-
-        let appOpened = false;
-
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                appOpened = true;
-            }
-        });
-
-        window.addEventListener("pagehide", () => {
-            appOpened = true;
-        });
-
-        // Mở app
-        setTimeout(() => {
-            window.location.href = intentUrl;
-        }, 100);
-
-        // Fallback Play Store
-        setTimeout(() => {
-            if (!appOpened) {
-                window.location.replace(playStoreUrl);
-            }
-        }, 2500);
+        window.location.href = intentUrl;
     </script>
 
 </body>
