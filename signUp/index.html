@@ -177,9 +177,7 @@
             Vui lòng chờ trong giây lát
         </div>
 
-        <a id="downloadBtn"
-            class="btn"
-            href="https://play.google.com/store/apps/details?id=com.lapolo.medical">
+        <a id="downloadBtn" class="btn" href="https://play.google.com/store/apps/details?id=com.lapolo.medical">
             📱 Tải ứng dụng FaCare
         </a>
 
@@ -202,14 +200,23 @@
             "package=" + packageName + ";" +
             "end;";
 
-        // Auto open app after 0.5s
-        setTimeout(() => {
-            window.location.href = intentUrl;
-        }, 500);
+        const playStoreUrl =
+            "https://play.google.com/store/apps/details?id=" + packageName;
 
-        // If app is not opened after 2s, show download button
+        const start = Date.now();
+
+        window.location.href = intentUrl;
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                window.appOpened = true;
+            }
+        });
+
         setTimeout(() => {
-            document.getElementById("downloadBtn").style.display = "flex";
+            if (!window.appOpened) {
+                window.location.replace(playStoreUrl);
+            }
         }, 2000);
     </script>
 
