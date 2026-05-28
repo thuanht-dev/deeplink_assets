@@ -190,6 +190,18 @@
     <script>
         const packageName = "com.lapolo.medical";
 
+        const params = new URLSearchParams(window.location.search);
+        const refCode = params.get("ref");
+
+        let playStoreUrl =
+            "https://play.google.com/store/apps/details?id=" + packageName;
+
+        if (refCode) {
+            playStoreUrl +=
+                "&referrer=" +
+                encodeURIComponent("ref=" + refCode);
+        }
+
         const intentUrl =
             "intent://" +
             window.location.host +
@@ -199,9 +211,7 @@
             "scheme=https;" +
             "package=" + packageName + ";" +
             "S.browser_fallback_url=" +
-            encodeURIComponent(
-                "https://play.google.com/store/apps/details?id=" + packageName
-            ) +
+            encodeURIComponent(playStoreUrl) +
             ";end;";
 
         window.location.href = intentUrl;
