@@ -203,21 +203,29 @@
         const playStoreUrl =
             "https://play.google.com/store/apps/details?id=" + packageName;
 
-        const start = Date.now();
-
-        window.location.href = intentUrl;
+        let appOpened = false;
 
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
-                window.appOpened = true;
+                appOpened = true;
             }
         });
 
+        window.addEventListener("pagehide", () => {
+            appOpened = true;
+        });
+
+        // Mở app
         setTimeout(() => {
-            if (!window.appOpened) {
+            window.location.href = intentUrl;
+        }, 100);
+
+        // Fallback Play Store
+        setTimeout(() => {
+            if (!appOpened) {
                 window.location.replace(playStoreUrl);
             }
-        }, 2000);
+        }, 2500);
     </script>
 
 </body>
