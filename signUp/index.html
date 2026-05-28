@@ -182,24 +182,26 @@
     </div>
 
     <script>
-        const queryString = window.location.search;
-        const packageName = "com.lapolo.medical"; // Package ID chính xác của bạn
+        const packageName = "com.lapolo.medical";
 
-        // URL để mở App qua Intent (Chuẩn Android để không reload trang)
-        const intentUrl = "intent://signUp" + queryString +
-            "#Intent;scheme=https;package=" + packageName +
-            ";host=thuanht-dev.github.io;path=/deeplink_assets/signUp;end;";
+        const currentUrl = window.location.href;
 
-        // Gán link cho nút bấm thủ công
+        const intentUrl =
+            "intent://" +
+            window.location.host +
+            window.location.pathname +
+            window.location.search +
+            "#Intent;" +
+            "scheme=https;" +
+            "package=" + packageName + ";" +
+            "end;";
+
         const openAppBtn = document.getElementById("openAppBtn");
         openAppBtn.href = intentUrl;
 
-        // Xử lý tự động mở App 1 lần duy nhất
-        // sessionStorage giúp tránh reload khi người dùng quay lại trang
-        if (!sessionStorage.getItem('redirected')) {
-            sessionStorage.setItem('redirected', 'true');
+        if (!sessionStorage.getItem("redirected")) {
+            sessionStorage.setItem("redirected", "true");
 
-            // Đợi 800ms để người dùng kịp thấy trang web trước khi chuyển
             setTimeout(() => {
                 window.location.href = intentUrl;
             }, 800);
